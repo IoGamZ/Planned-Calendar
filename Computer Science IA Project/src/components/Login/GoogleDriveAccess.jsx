@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
 
-export const GoogleDriveAccess = () => {
+export const GoogleDriveAccess = ({ onConnected }) => {
     const [accessToken, setAccessToken] = useState("");
     const [files, setFiles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -59,6 +59,7 @@ export const GoogleDriveAccess = () => {
                 try {
                     setAccessToken(tokenResponse.access_token);
                     await loadDriveFiles(tokenResponse.access_token);
+                    onConnected?.();
                 } catch (requestError) {
                     setError(requestError.message);
                 } finally {

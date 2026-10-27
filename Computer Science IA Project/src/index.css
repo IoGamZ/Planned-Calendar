@@ -146,3 +146,10 @@
   background-clip: padding-box;
   border: 1px solid transparent;
 }
+
+.sx-react-calendar-wrapper {
+  width: 1200px;
+  max-width: 100vw;
+  height: 800px;
+  max-height: 90vh;
+}
