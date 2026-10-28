@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { useState } from "react";
-import CalendarPage from "./pages/CalendarPage.jsx";
-import { LoginPage } from "./pages/LoginPage.jsx";
+import Home from "./pages/Home.jsx";
 import { Authentication } from "./pages/Authentication.jsx";
 import { Navbar } from "./components/Navbar.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -21,11 +20,11 @@ function WebsiteLayout() {
 
 function App() {
   const [user, setUser] = useState(null)
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+  const [isDriveConnected, setIsDriveConnected] = useState(false)
 
   const handleAuthenticated = (profile) => {
     setUser(profile)
-    setIsCalendarOpen(false)
+    setIsDriveConnected(false)
   }
 
   return (
@@ -37,13 +36,13 @@ function App() {
               path="/"
               element={
                 !user ? (
-                  <LoginPage onAuthenticated={handleAuthenticated} />
-                ) : isCalendarOpen ? (
-                  <CalendarPage />
+                  <Authentication onAuthenticated={handleAuthenticated} />
+                ) : isDriveConnected ? (
+                  <Home user={user} />
                 ) : (
                   <Authentication
                     user={user}
-                    onComplete={() => setIsCalendarOpen(true)}
+                    onComplete={() => setIsDriveConnected(true)}
                   />
                 )
               }

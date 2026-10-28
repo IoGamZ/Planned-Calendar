@@ -31,24 +31,9 @@ function CalendarPage() {
     })
 
     return (
-        <>
-
-            <div className="
-                mt-8 h-[700px] min-h-[600px] 
-                [&_.sx-react-calendar-wrapper]:h-full [&_.sx-react-calendar-wrapper]:min-h-0"
-                align="right"
-            >
-                <ScheduleXCalendar calendarApp={calendar} />
-                <h1 className="
-                    " 
-                    align="left"
-                >
-                    hi
-                </h1>
-            </div>
-                
-
-        </>
+        <div className="h-[700px] min-h-[600px] [&_.sx-react-calendar-wrapper]:h-full [&_.sx-react-calendar-wrapper]:min-h-0">
+            <ScheduleXCalendar calendarApp={calendar} />
+        </div>
     );
 }
 
