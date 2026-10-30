@@ -1,11 +1,12 @@
 import { useState } from "react";
 
 const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
+//define permssion scope for drive access and manipulation (from API and Service in Google Cloud service)
 
 export const GoogleDriveAccess = ({ onConnected }) => {
-    const [accessToken, setAccessToken] = useState("");
-    const [files, setFiles] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [accessToken, setAccessToken] = useState(""); //store and use google drive access token
+    const [files, setFiles] = useState([]);             //store list of file PLANNING to be extracted
+    const [isGoing, setIsGoing] = useState(false);  //track if request is ongoing or not
     const [error, setError] = useState("");
 
     const loadDriveFiles = async (token) => {
@@ -43,16 +44,16 @@ export const GoogleDriveAccess = ({ onConnected }) => {
             return;
         }
 
-        setIsLoading(true);
+        setIsGoing(true);
         setError("");
 
         const tokenClient = window.google.accounts.oauth2.initTokenClient({
-            client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+            client_id: "4114665443-h9kp58627tmo4s81hb7drsfbm96stlpt.apps.googleusercontent.com",
             scope: DRIVE_SCOPE,
             callback: async (tokenResponse) => {
                 if (tokenResponse.error) {
                     setError("Google Drive access was not granted.");
-                    setIsLoading(false);
+                    setIsGoing(false);
                     return;
                 }
 
@@ -63,7 +64,7 @@ export const GoogleDriveAccess = ({ onConnected }) => {
                 } catch (requestError) {
                     setError(requestError.message);
                 } finally {
-                    setIsLoading(false);
+                    setIsGoing(false);
                 }
             },
         });
@@ -83,10 +84,10 @@ export const GoogleDriveAccess = ({ onConnected }) => {
                 <button
                     type="button"
                     onClick={connectDrive}
-                    disabled={isLoading}
+                    disabled={isGoing}
                     className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 disabled:cursor-wait disabled:opacity-60"
                 >
-                    {isLoading ? "Connecting…" : accessToken ? "Refresh Drive" : "Connect Drive"}
+                    {isGoing ? "Connecting…" : accessToken ? "Refresh Drive" : "Connect Drive"}
                 </button>
             </div>
 

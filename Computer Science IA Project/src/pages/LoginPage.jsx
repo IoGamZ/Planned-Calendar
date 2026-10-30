@@ -1,5 +1,6 @@
-import { GoogleSignIn } from "../components/Login/GoogleSignIn.jsx";
+import { GoogleSignIn } from "../src/pages/Authentication.jsx";
 
+//front screen
 export const LoginPage = ({ onAuthenticated }) => (
     <main className="relative z-10 flex min-h-screen items-center justify-center px-4">
         <section className="w-full max-w-md rounded-3xl border border-primary/20 bg-card/85 p-8 text-center shadow-xl backdrop-blur-sm">

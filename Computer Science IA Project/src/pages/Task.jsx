@@ -1,19 +1,56 @@
-import {} from 
+//Same format as Upcoming Task section from Home.jsx (just with 1:1 ratio and gap of 4)
+function TaskList() {
+    return (
+        <main className="container h-screen overflow-hidden py-6 sm:py-8 mt-6">
+            <div className="grid h-full min-h-0 grid-cols-2 items-start gap-4">
+                <section className="min-h-0 pt-2">
+                    <p className="text-xl font-bold tracking-[0.25em] text-primary">
+                        -   Task List   -
+                    </p>
+                    <section className="mt-8 rounded-2xl border border-primary/80 p-6 text-left shadow-lg ">
+                        <div className=" gap-4 sm:items-center sm:justify-between">
+                            <div>
+                                <h2 className="text-xl font-semibold">
+                                    Example Task #1
+                                </h2>
+                                <p className="mt-1 text-sm text-foreground/65">
+                                    Description of example task, should only hold up to 25 words.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <section className="mt-8 rounded-2xl border border-primary/60 p-6 text-left shadow-lg">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h2 className="text-xl font-semibold">
+                                    Example Task #2
+                                </h2>
+                                <p className="mt-1 text-sm text-foreground/65">
+                                    Description of example task, should only hold up to 25 words.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <section className="mt-8 rounded-2xl border border-primary/40 p-6 text-left shadow-lg ">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h2 className="text-xl font-semibold">
+                                    Example Task #3
+                                </h2>
+                                <p className="mt-1 text-sm text-foreground/65">
+                                    Description of example task, should only hold up to 25 words.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                <section className="mt-8 rounded-2xl border border-primary/20 p-6 text-left shadow-lg">
+                    This will be where user input their data for a task. 
+                </section>
+            </div>
+        </main>
+    );
+}
 
-Tasks = [
-    { task_id: 1, title: "example task", description: "example description", due_date: "2026-10-27", completion: 0.66, task_duration: "0" },
-    { task_id: 2, title: "example task", description: "example description", due_date: "2026-10-27", completion: 0.56, task_duration: "2" },
-    { task_id: 2, title: "example task", description: "example description", due_date: "2026-10-27", completion: 0.16, task_duration: "3" },
-];
 
-let jsonObject = JSON.stringify(Tasks);
-
-// Save the data as a file.
-const file = DriveApp.createFile("sample.txt", jsonObject); 
-const fileId = file.getId();
-console.log(fileId)
-
-// Retrieve the data from the file.
-const text = DriveApp.getFileById(fileId).getBlob().getDataAsString(); 
-const array = JSON.parse(text);
-console.log(array)
+export default TaskList;

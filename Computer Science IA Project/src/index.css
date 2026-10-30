@@ -69,7 +69,12 @@
   }
 
   html {
-    @apply scroll-smooth;
+    @apply h-full overflow-hidden;
+  }
+
+  body,
+  #root {
+    @apply h-full overflow-hidden;
   }
 
   body {
